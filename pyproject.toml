@@ -1,0 +1,20 @@
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude = '''
+/(
+	\.git
+| \.hg
+| \.mypy_cache
+| \.tox
+| \.venv
+| _build
+| buck-out
+| build   
+)/ 
+'''
+
+[tool.interrogate]
+ignore-init-method = true
+fail-under = 90
+exclude = ["setup.py", "build"]
