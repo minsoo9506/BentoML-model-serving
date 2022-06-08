@@ -18,6 +18,8 @@ pyenv virtualenv 3.9.13 BentoMLModelServing
   - mypy도 추가하고 싶었는데 에러가 발생해서 이단 제외했다.
 - `.pre-commit-config.yaml` 파일을 작성한다.
 - `pre-commit install`으로 commit할 때마다 작업들이 실행되도록 한다.
+  - git hook에 등록하는 과정이다.
+  - git은 특정 상황에 특정 스크립트를 실행할 수 있도록 hook이라는 기능을 지원한다. `./git/hooks`에 들어가보면 예시 파일들이 있다.
 
 # Reference
 
