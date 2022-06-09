@@ -16,5 +16,7 @@ exclude = '''
 
 [tool.interrogate]
 ignore-init-method = true
+ignore-init-module = true
+ignore-module = true
 fail-under = 90
 exclude = ["setup.py", "build"]
