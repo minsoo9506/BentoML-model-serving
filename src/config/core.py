@@ -96,7 +96,8 @@ def creat_and_validate_config(parsed_config: YAML = None) -> Config:
         parsed_config = fetch_config_from_yaml()
 
     _config = Config(
-        app_config=AppConfig(**parsed_config.data), model_config=ModelConfig(**parsed_config.data)
+        app_config=AppConfig(**parsed_config.data),
+        model_config=ModelConfig(**parsed_config.data),
     )
 
     return _config
