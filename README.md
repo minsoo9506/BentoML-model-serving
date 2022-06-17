@@ -43,11 +43,11 @@ pyenv virtualenv 3.9.13 BentoMLModelServing
     ├── bentoml_app.py
     ├── config
     │   ├── core.py
-    │   └── __init__.py
+    │   ├── __init__.py
     ├── config.yml
     ├── __init__.py
     ├── process.py
-    ├── run.py
+    ├── save_model.py
     ├── service.py
     └── train.py
 ```
@@ -59,9 +59,30 @@ pyenv virtualenv 3.9.13 BentoMLModelServing
 - 모델 훈련과 관련한 과정을 만든다.
   - `train.py`
 - 전처리와 모델훈련을 진행하고 bentoML을 이용하여 이들을 저장한다.
-  - `run.py`
-- 서비스
+  - `save_model.py`
+- api 생성
   - `service.py`
+
+### model save
+
+- `python src/save_model.py` 명령어를 실행하면 아래와 같은 log와 함께 모델이 저장된다.
+
+```
+2022년 06월 17일 23시 47분 50초 INFO     [cli] Using the default model signature for sklearn ({'predict': {'batchable': False}}) for model scaler.
+2022년 06월 17일 23시 47분 50초 INFO     [cli] Successfully saved Model(tag="scaler:oxwx4sxojsr6vfz3", path="/home/minsoo/bentoml/models/scaler/oxwx4sxojsr6vfz3/")
+2022년 06월 17일 23시 47분 51초 INFO     [cli] Using the default model signature for sklearn ({'predict': {'batchable': False}}) for model model.
+2022년 06월 17일 23시 47분 51초 INFO     [cli] Successfully saved Model(tag="model:oxwx4thojsr6vfz3", path="/home/minsoo/bentoml/models/model/oxwx4thojsr6vfz3/")
+```
+
+- `entoml models list` 명령어를 실행해서 저장된 모델을 확인할 수 있다.
+
+```
+Tag                      Module           Size      Creation Time        Path
+model:oxwx4thojsr6vfz3   bentoml.sklearn  1.90 KiB  2022-06-17 14:47:51  ~/bentoml/models/model/oxwx4thojs…
+scaler:oxwx4sxojsr6vfz3  bentoml.sklearn  2.13 KiB  2022-06-17 14:47:50  ~/bentoml/models/scaler/oxwx4sxoj…
+```
+
+### api 생성
 
 # Reference
 
@@ -70,3 +91,4 @@ pyenv virtualenv 3.9.13 BentoMLModelServing
 - bemtoML
   - https://docs.bentoml.org/en/latest/concepts/model.html
   - https://github.com/khuyentran1401/customer_segmentation/tree/bentoml_demo
+  - https://zuminternet.github.io/BentoML/
