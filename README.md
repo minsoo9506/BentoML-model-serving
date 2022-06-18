@@ -30,6 +30,8 @@ pyenv virtualenv 3.9.13 BentoMLModelServing
 
 ## BentoML
 
+- `bentoml --version` = 1.0.0rc1
+
 ```
 .
 ├── data
@@ -63,7 +65,7 @@ pyenv virtualenv 3.9.13 BentoMLModelServing
 - api 생성
   - `service.py`
 
-### model save
+### 1. Savd model
 
 - `python src/save_model.py` 명령어를 실행하면 아래와 같은 log와 함께 모델이 저장된다.
 
@@ -82,12 +84,52 @@ model:oxwx4thojsr6vfz3   bentoml.sklearn  1.90 KiB  2022-06-17 14:47:51  ~/bento
 scaler:oxwx4sxojsr6vfz3  bentoml.sklearn  2.13 KiB  2022-06-17 14:47:50  ~/bentoml/models/scaler/oxwx4sxoj…
 ```
 
-### api 생성
+### 2. Create prediction service (api)
 
 - `service.py`을 이용하여 api를 만들수 있다.
-- `bentoml serve service.py:service --reload` 명령어를 실행하면 서버가 띄워진다.
+- `bentoml serve service.py:service --reload` 명령어를 실행하여 로컬에서 HTTP server를 시작한다.
   - `service`는 `service.py`에서 만든 service의 이름을 사용해야한다.
 - `predict.py`를 이용하여 request를 날려도 되고 localhost:3000에 들어가서 직접해도 된다. (swagger ui)
+
+### 3. Build a bento for deployment
+
+- `bentofile.yaml` 파일을 작성한 뒤 `bentoml build` 명령어를 통해서 도시락을 만든다.
+- `bentoml list`를 하면 아래처럼 도시락이 만들어짐을 확인할 수 있다.
+
+```
+ Tag                               Size       Creation Time        Path
+ fraud_detection:6hugnkxpb2ts34ke  12.03 KiB  2022-06-18 14:00:02  ~/bentoml/bentos/fraud_detection/6hugnkxpb2ts34ke
+```
+
+- 위와 관련한 파일들은 `~/bentoml`에서 확인할 수 있다.
+- `~/bentoml/bentos/fraud_detection/6hugnkxpb2ts34ke`로 가보면 아래와 같은 파일들이 만들어짐을 확인할 수 있다.
+- 특히 Dockerfile도 만들어줘서 서버에 바로 띄울 수도 있을 것이다. (Deployment!!)
+
+```
+.
+├── apis
+│   └── openapi.yaml
+├── bento.yaml
+├── env
+│   ├── conda
+│   ├── docker
+│   │   ├── Dockerfile
+│   │   └── entrypoint.sh
+│   └── python
+│       ├── requirements.lock.txt
+│       ├── requirements.txt
+│       └── version.txt
+├── models
+│   └── model
+│       ├── latest
+│       └── oxwx4thojsr6vfz3
+│           ├── model.yaml
+│           └── saved_model.pkl
+├── README.md
+└── src
+    └── src
+        └── service.py
+```
 
 # Reference
 
