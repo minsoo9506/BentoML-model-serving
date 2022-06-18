@@ -84,6 +84,11 @@ scaler:oxwx4sxojsr6vfz3  bentoml.sklearn  2.13 KiB  2022-06-17 14:47:50  ~/bento
 
 ### api 생성
 
+- `service.py`을 이용하여 api를 만들수 있다.
+- `bentoml serve service.py:service --reload` 명령어를 실행하면 서버가 띄워진다.
+  - `service`는 `service.py`에서 만든 service의 이름을 사용해야한다.
+- `predict.py`를 이용하여 request를 날려도 되고 localhost:3000에 들어가서 직접해도 된다. (swagger ui)
+
 # Reference
 
 - pre-commit
