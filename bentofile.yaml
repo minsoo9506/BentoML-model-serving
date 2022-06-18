@@ -1,0 +1,8 @@
+service: "src/service.py:service"
+include:
+  - "src/service.py"
+python:
+  packages:
+    - pandas==1.4.2
+    - numpy==1.23.0rc2
+    - scikit-learn==1.1.1
