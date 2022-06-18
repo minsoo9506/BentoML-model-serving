@@ -1,5 +1,3 @@
-import json
-
 import bentoml
 import numpy as np
 import pandas as pd
